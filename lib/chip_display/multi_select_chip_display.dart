@@ -38,6 +38,9 @@ class MultiSelectChipDisplay<V> extends StatelessWidget {
   /// Enables the scrollbar when scroll is `true`.
   final HorizontalScrollBar? scrollBar;
 
+  /// Set to true to show a checkmark on the chips.
+  final bool showCheckmark;
+
   final ScrollController _scrollController = ScrollController();
 
   /// Set a fixed height.
@@ -62,6 +65,7 @@ class MultiSelectChipDisplay<V> extends StatelessWidget {
     this.scrollBar,
     this.height,
     this.chipWidth,
+    this.showCheckmark = false,
   }) {
     this.disabled = false;
   }
@@ -130,6 +134,7 @@ class MultiSelectChipDisplay<V> extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(2.0),
       child: ChoiceChip(
+        showCheckmark: showCheckmark,
         shape: shape as OutlinedBorder?,
         avatar: icon != null
             ? Icon(

@@ -85,6 +85,7 @@ class MultiSelectChipDisplay<V> extends StatelessWidget {
     this.scrollBar,
     this.height,
     this.chipWidth,
+    this.showCheckmark = false,
   });
 
   @override
@@ -93,7 +94,7 @@ class MultiSelectChipDisplay<V> extends StatelessWidget {
     return Container(
       decoration: decoration,
       alignment: alignment ?? Alignment.centerLeft,
-      padding: EdgeInsets.symmetric(horizontal: scroll ? 0 : 10),
+      padding: EdgeInsets.symmetric(horizontal: scroll ? 0 : 10, vertical: 10),
       child: scroll
           ? Container(
               width: MediaQuery.of(context).size.width,
@@ -132,9 +133,13 @@ class MultiSelectChipDisplay<V> extends StatelessWidget {
 
   Widget _buildItem(MultiSelectItem<V> item, BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(2.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
       child: ChoiceChip(
         showCheckmark: showCheckmark,
+        side: BorderSide(
+          color: Theme.of(context).colorScheme.outline,
+          width: 1,
+        ),
         shape: shape as OutlinedBorder?,
         avatar: icon != null
             ? Icon(
